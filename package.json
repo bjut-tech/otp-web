@@ -1,0 +1,29 @@
+{
+  "name": "bjut-otp-web",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vue-tsc && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "vue": "^3.3.4"
+  },
+  "devDependencies": {
+    "@tailwindcss/forms": "^0.5.3",
+    "@vitejs/plugin-vue": "^4.2.3",
+    "@vueuse/core": "^10.2.1",
+    "@vueuse/integrations": "^10.2.1",
+    "autoprefixer": "^10.4.14",
+    "axios": "^1.4.0",
+    "bootstrap-icons": "^1.10.5",
+    "postcss": "^8.4.25",
+    "tailwindcss": "^3.3.2",
+    "typescript": "^5.0.2",
+    "vite": "^4.4.0",
+    "vite-svg-loader": "^4.0.0",
+    "vue-router": "^4.2.4",
+    "vue-tsc": "^1.8.3"
+  }
+}
