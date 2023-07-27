@@ -6,6 +6,7 @@ import { useAxios } from '@vueuse/integrations/useAxios'
 
 import { serverUrl } from '../utils/service.ts'
 import { token, usernameLoggedIn } from '../utils/storage.ts'
+import DashboardProgress from '../components/DashboardProgress.vue'
 
 import BiArrowClockwise from 'bootstrap-icons/icons/arrow-clockwise.svg?component'
 import BiGit from 'bootstrap-icons/icons/git.svg?component'
@@ -16,9 +17,6 @@ const router = useRouter()
 const code = ref('')
 const validity = ref(0)
 
-const circumference = computed(() => {
-  return 2 * Math.PI * 54
-})
 const digits = computed(() => {
   return (code.value || '------').split('')
 })
@@ -96,33 +94,14 @@ onMounted(() => {
     </p>
 
     <div class="w-full inline-flex items-center justify-center overflow-hidden rounded-full">
-      <!-- https://css-tricks.com/building-progress-ring-quickly -->
-      <svg
-        class="w-full -rotate-90"
-        viewBox="0 0 120 120"
-      >
-        <circle
-          class="text-gray-300 dark:text-gray-700"
-          stroke-width="3"
-          stroke="currentColor"
-          fill="transparent"
-          r="54"
-          cx="60"
-          cy="60"
-        />
-        <circle
-          class="text-orange-500 dark:text-orange-400 transition-all ease-linear duration-1000"
-          stroke-width="3"
-          :stroke-dasharray="circumference"
-          :stroke-dashoffset="circumference - validity / 60 * circumference"
-          stroke-linecap="round"
-          stroke="currentColor"
-          fill="transparent"
-          r="54"
-          cx="60"
-          cy="60"
-        />
-      </svg>
+      <dashboard-progress
+        class="w-full"
+        :percentage="validity / 60 * 100"
+        :trail-width="3"
+        :stroke-width="3"
+        trail-class="stroke-gray-300 dark:stroke-gray-700"
+        stroke-class="stroke-orange-500 dark:stroke-orange-400 !ease-linear !duration-1000"
+      />
 
       <div
         class="absolute inline-flex font-code text-5xl gap-4 select-all"
